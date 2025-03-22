@@ -1,5 +1,5 @@
 {
-  "itemGroup.structalis": "Example Mod Tab",
-  "block.structalis.example_block": "Example Block",
+  "itemGroup.structalis": "Structalis",
+  "block.structalis.dark_prismarine_bricks": "Dark Prismarine Bricks",
   "item.structalis.example_item": "Example Item"
 }
