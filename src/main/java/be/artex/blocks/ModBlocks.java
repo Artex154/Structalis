@@ -1,0 +1,34 @@
+package be.artex.blocks;
+
+import be.artex.Structalis;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class ModBlocks {
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Structalis.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Structalis.MODID);
+
+    private static DeferredBlock<Block> registerBlock(String name, BlockBehaviour.Properties properties) {
+        return BLOCKS.registerSimpleBlock(name, properties);
+    }
+
+    private static DeferredBlock<Block> registerBlockFromCopy(String name, Block block) {
+        return BLOCKS.registerSimpleBlock(name, BlockBehaviour.Properties.ofFullCopy(block));
+    }
+
+    private static DeferredItem<BlockItem> registerBlockItem(String name, DeferredBlock<Block> block) {
+        return ITEMS.registerSimpleBlockItem(name, block);
+    }
+
+    public static final DeferredBlock<Block> DARK_PRISMARINE_BRICKS = registerBlockFromCopy("dark_prismarine_bricks", Blocks.DARK_PRISMARINE);
+    public static final DeferredItem<BlockItem> DARK_PRISMARINE_BRICKS_ITEM = registerBlockItem("dark_prismarine_bricks", DARK_PRISMARINE_BRICKS);
+
+
+
+
+}
