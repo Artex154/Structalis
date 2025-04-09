@@ -1,5 +1,8 @@
 {
   "itemGroup.structalis": "Structalis",
+
   "block.structalis.dark_prismarine_bricks": "Dark Prismarine Bricks",
-  "item.structalis.example_item": "Example Item"
+
+  "block.structalis.cactus_block": "Cactus Block",
+  "block.structalis.stripped_cactus_block": "Stripped Cactus Block"
 }
