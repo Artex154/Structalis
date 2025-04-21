@@ -12,17 +12,20 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import org.slf4j.Logger;
 
-public class CactusBlock extends Block {
+public class LogBlock extends Block {
     private static final Logger LOGGER = Structalis.LOGGER;
+    private DeferredBlock<Block> strippedBlock;
 
-    public CactusBlock(Properties properties) {
+    public LogBlock(Properties properties, DeferredBlock<Block> strippedBlock) {
         super(properties);
+
+        this.strippedBlock = strippedBlock;
     }
 
     @Override
@@ -32,9 +35,12 @@ public class CactusBlock extends Block {
 
         level.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-        level.setBlock(pos, ModBlocks.STRIPPED_CACTUS_BLOCK.get().defaultBlockState(), Block.UPDATE_ALL_IMMEDIATE);
+        level.setBlock(pos, this.strippedBlock.get().defaultBlockState(), Block.UPDATE_ALL_IMMEDIATE);
 
         if (!level.isClientSide) {
+            if (player.isCreative())
+                return ItemInteractionResult.SUCCESS;
+
             stack.setDamageValue(stack.getDamageValue() + 1);
 
             if (stack.getDamageValue() == stack.getMaxDamage()) {
